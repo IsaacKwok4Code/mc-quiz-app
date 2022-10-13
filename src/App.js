@@ -1,8 +1,9 @@
 import './App.css';
 import {shuffle} from 'lodash';
 import MultipleChoiceQuestion from './MultipleChoiceQuestion';
+import QuestionList from '../src/components/questionList/QuestionList';
 
-const quizQuestions = [{
+const QUIZ_Questions_DATA = [{
   id: 1,
   prompt: "What is your name?",
   answer: "King Arthur",
@@ -20,30 +21,11 @@ const quizQuestions = [{
 }]
 
 function App() {
-  const quizTemplate = quizQuestions.map(question => {
-    return {
-      ...question,
-      options: shuffle([...question.distractors, question.answer]),
-      response: "",
-      isAnswered: false,
-      isCorrect: false,
-    }
-  })
-
   return (
     <div className="App">
       <h1>Quiz!</h1>
-
-      <MultipleChoiceQuestion key={1} question={{
-        id: 1,
-        prompt: "What is your name?",
-        answer: "King Arthur",
-        distractors: ["Sir Lancelot", "Sir Galahad", "Sir Robin"],
-        options: ["King Arthur", "Sir Lancelot", "Sir Galahad", "Sir Robin"],
-        response: "",
-        isAnswered: false,
-        isCorrect: false,
-      }} />
+      <p>Your point is X out of X</p>
+      <QuestionList items={QUIZ_Questions_DATA}/>
     </div>
   );
 }
